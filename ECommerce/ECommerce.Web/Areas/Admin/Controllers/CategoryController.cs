@@ -21,6 +21,8 @@ namespace ECommerce.Web.Areas.Admin.Controllers
         public ActionResult Add()
         {
             return View();
+
+
         }
 
         [HttpPost]
