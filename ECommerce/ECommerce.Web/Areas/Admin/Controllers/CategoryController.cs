@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ECommerce.Web.Areas.Admin.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,14 +9,14 @@ namespace ECommerce.Web.Areas.Admin.Controllers
 {
     public class CategoryController : Controller
     {
-        GurhanDbEntities db = new GurhanDbEntities();
+        private GurhanDbEntities db = new GurhanDbEntities();
        
         // GET: Admin/Category
         public ActionResult List()
         {
-            
-            List<Category> cat = db.Categories.ToList();
-            return View(cat);
+            CategoryVM category = new CategoryVM();
+            category.Category = db.Categories.ToList();
+            return View(category);
         }
 
         public ActionResult Add()
@@ -43,8 +44,9 @@ namespace ECommerce.Web.Areas.Admin.Controllers
 
         public ActionResult Edit(int id)
         {
-            Category cat = db.Categories.SingleOrDefault(x => x.Id == id);
-            return View(cat);
+            CategoryVM category = new CategoryVM();
+            category.Edit = db.Categories.SingleOrDefault(x => x.Id == id);
+            return View(category.Edit);
         }
 
         [HttpPost]
